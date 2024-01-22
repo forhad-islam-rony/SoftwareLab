@@ -47,6 +47,24 @@ public:
 };
 
 
-int main(){
+int main() {
+    ShapeFactory& shapeFactory = ShapeFactory::getInstance();
 
+    Shape* shape1 = shapeFactory.getShape("CIRCLE");
+    if (shape1 != nullptr) {
+        shape1->draw();
+        delete shape1;
+    } else {
+        cout << "Invalid shape type." <<endl;
+    }
+
+    Shape* shape2 = shapeFactory.getShape("RECTANGLE");
+    if (shape2 != nullptr) {
+        shape2->draw();
+        delete shape2;
+    } else {
+        cout << "Invalid shape type." <<endl;
+    }
+
+    return 0;
 }
