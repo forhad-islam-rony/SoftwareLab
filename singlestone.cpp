@@ -20,6 +20,33 @@ class Square : public Shape{
 };
 
 
+class ShapeFactory {
+private:
+    ShapeFactory() {}
+
+public:
+    static ShapeFactory& getInstance() {
+        static ShapeFactory instance;
+        return instance;
+    }
+
+    Shape* getShape(const std::string& shapeType) {
+        if (shapeType.empty()) {
+            return nullptr;
+        }
+        if (shapeType == "RECTANGLE") {
+            return new Rectangle();
+        } else if (shapeType == "SQUARE") {
+            return new Square();
+        }
+        return nullptr;
+    }
+
+    ShapeFactory(const ShapeFactory&) = delete;
+    ShapeFactory& operator=(const ShapeFactory&) = delete;
+};
+
+
 int main(){
 
 }
